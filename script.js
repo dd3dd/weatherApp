@@ -60,12 +60,14 @@ requestBut.addEventListener('click', () => {
     const storePoP12 = [];
     const storeMinT = [];
     const storeMaxT = [];
+    const storeDes = [];
     for (let i = 0; i < 3; i++) {
         storeStartTime.push(townNameArr[selectedIndex].weatherElement[0].time[i].startTime);
         storeEndTime.push(townNameArr[selectedIndex].weatherElement[0].time[i].endTime);
         storePoP12.push(townNameArr[selectedIndex].weatherElement[0].time[i].elementValue[0].value);
         storeMinT.push(townNameArr[selectedIndex].weatherElement[1].time[i].elementValue[0].value);
         storeMaxT.push(townNameArr[selectedIndex].weatherElement[3].time[i].elementValue[0].value);
+        storeDes.push(townNameArr[selectedIndex].weatherElement[2].time[i].elementValue[0].value);
     }
     const myH1 = document.querySelector('h1');
     const todayDate = storeStartTime[0];
@@ -121,13 +123,15 @@ requestBut.addEventListener('click', () => {
 
 
 
-    console.log(storeStartTime, storeEndTime, storePoP12, storeMinT, storeMaxT);
+    console.log(storeStartTime, storeEndTime, storePoP12, storeMinT, storeMaxT, storeDes);
+
 
 
     for (let i = 0; i < 3; i++) {
         const startTime = storeStartTime[i];
         const endTime = storeEndTime[i];
         const dataInfo1 = document.createElement('p');
+
         dataInfo1.innerText = `${startTime}~${endTime}`;
         const query = document.querySelector(`#display${i + 1}`);
         query.append(dataInfo1);
@@ -149,6 +153,17 @@ requestBut.addEventListener('click', () => {
         pop12Div.append(rainIcon);
         pop12Div.append(dataInfo3);
         query.append(pop12Div);
+
+        const weatherDes = storeDes[i];
+        const makeBack = document.createElement('div');
+        const makeDescr = document.createElement('p');
+        makeDescr.innerText = weatherDes;
+        makeBack.append(makeDescr);
+        makeBack.classList.add('card-back');
+        const displayNum = document.querySelector(`#display${i + 1}`);
+        displayNum.append(makeBack);
+
+
         // dataInfo3.innerText = `${<i class="bi bi-cloud-rain"></i>}`;
     }
 
@@ -162,7 +177,36 @@ requestBut.addEventListener('click', () => {
             element.style.opacity = 1;
         })
     }, 1);
+
+
+
+    sunOrMoon1.addEventListener('mouseover', () => {
+        sunOrMoon1.style.transform = 'rotateY(180deg)';
+        // console.log('aa');
+    })
+    sunOrMoon1.addEventListener('mouseout', () => {
+        sunOrMoon1.style.transform = '';
+        // console.log('aa');
+    })
+    sunOrMoon2.addEventListener('mouseover', () => {
+        sunOrMoon2.style.transform = 'rotateY(180deg)';
+        // console.log('aa');
+    })
+    sunOrMoon2.addEventListener('mouseout', () => {
+        sunOrMoon2.style.transform = '';
+        // console.log('aa');
+    })
+    sunOrMoon3.addEventListener('mouseover', () => {
+        sunOrMoon3.style.transform = 'rotateY(180deg)';
+        // console.log('aa');
+    })
+    sunOrMoon3.addEventListener('mouseout', () => {
+        sunOrMoon3.style.transform = '';
+        // console.log('aa');
+    })
+
 })
+
 
 
 
